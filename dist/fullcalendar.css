@@ -123,7 +123,7 @@ body .fc { /* extra precedence to overcome jqui */
 
 /* Firefox has an annoying inner border */
 .fc button::-moz-focus-inner { margin: 0; padding: 0; }
-	
+
 .fc-state-default { /* non-theme */
 	border: 1px solid;
 }
@@ -145,7 +145,7 @@ body .fc { /* extra precedence to overcome jqui */
 	top: .05em; /* seems to be a good adjustment across browsers */
 	margin: 0 .1em;
 }
-	
+
 /*
   button states
   borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
@@ -179,9 +179,9 @@ body .fc { /* extra precedence to overcome jqui */
 	text-decoration: none;
 	background-position: 0 -15px;
 	-webkit-transition: background-position 0.1s linear;
-	   -moz-transition: background-position 0.1s linear;
-	     -o-transition: background-position 0.1s linear;
-	        transition: background-position 0.1s linear;
+	-moz-transition: background-position 0.1s linear;
+	-o-transition: background-position 0.1s linear;
+	transition: background-position 0.1s linear;
 }
 
 .fc-state-down,
@@ -616,7 +616,7 @@ a.fc-more:hover {
 .fc .fc-toolbar > * > :first-child { /* extra precedence to override button border margins */
 	margin-left: 0;
 }
-	
+
 /* title text */
 
 .fc-toolbar h2 {
@@ -633,7 +633,7 @@ a.fc-more:hover {
 .fc-toolbar .ui-state-hover {
 	z-index: 2;
 }
-	
+
 .fc-toolbar .fc-state-down {
 	z-index: 3;
 }
@@ -657,8 +657,8 @@ a.fc-more:hover {
 .fc-view-container *:before,
 .fc-view-container *:after {
 	-webkit-box-sizing: content-box;
-	   -moz-box-sizing: content-box;
-	        box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
 }
 
 .fc-view, /* scope positioning and z-index's for everything within the view */
@@ -761,6 +761,15 @@ a.fc-more:hover {
 	padding: 0 4px;
 	white-space: nowrap;
 }
+.fc .fc-axis .hours {
+	font-size: 1.8em;
+	letter-spacing: -2px;
+}
+
+.fc .fc-axis .minutes {
+	vertical-align: top;
+	font-size: 0.8em;
+}
 
 .fc-ltr .fc-axis {
 	text-align: right;
@@ -831,7 +840,7 @@ a.fc-more:hover {
 --------------------------------------------------------------------------------------------------*/
 
 .fc-slats td {
-	height: 1.5em;
+	height: 2.5em;
 	border-bottom: 0; /* each cell is responsible for its top border */
 }
 
@@ -921,6 +930,9 @@ be a descendant of the grid when it is being dragged.
 .fc-time-grid-event > .fc-content { /* contains the time and title, but no bg and resizer */
 	position: relative;
 	z-index: 2; /* above the bg */
+	display: inline-block;
+	overflow: hidden;
+	max-width: 80%;
 }
 
 .fc-time-grid-event .fc-time,
