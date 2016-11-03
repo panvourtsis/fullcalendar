@@ -255,6 +255,7 @@
 // FIX: find a different solution for view-option-hashes and have a whitelist
 // for options that can be recursively merged.
 
+	;;
 
 //var langOptionHash = {}; // initialized in defaults.js
 	fc.langs = langOptionHash; // expose
@@ -1237,21 +1238,21 @@
 										button.removeClass(tm + '-state-down');
 									})
 									.hover(
-									function() {
-										// the *hover* effect.
-										// only on buttons that are not the "active" tab, or disabled
-										button
-											.not('.' + tm + '-state-active')
-											.not('.' + tm + '-state-disabled')
-											.addClass(tm + '-state-hover');
-									},
-									function() {
-										// undo the *hover* effect
-										button
-											.removeClass(tm + '-state-hover')
-											.removeClass(tm + '-state-down'); // if mouseleave happens before mouseup
-									}
-								);
+										function() {
+											// the *hover* effect.
+											// only on buttons that are not the "active" tab, or disabled
+											button
+												.not('.' + tm + '-state-active')
+												.not('.' + tm + '-state-disabled')
+												.addClass(tm + '-state-hover');
+										},
+										function() {
+											// undo the *hover* effect
+											button
+												.removeClass(tm + '-state-hover')
+												.removeClass(tm + '-state-down'); // if mouseleave happens before mouseup
+										}
+									);
 
 								groupChildren = groupChildren.add(button);
 							}
@@ -1383,7 +1384,7 @@
 
 		function isFetchNeeded(start, end) {
 			return !rangeStart || // nothing has been fetched yet?
-					// or, a part of the new range is outside of the old range? (after normalizing)
+				// or, a part of the new range is outside of the old range? (after normalizing)
 				start.clone().stripZone() < rangeStart.clone().stripZone() ||
 				end.clone().stripZone() > rangeEnd.clone().stripZone();
 		}
@@ -2063,10 +2064,10 @@
 					newEnd || t.getDefaultEventEnd(newAllDay, newStart || oldStart),
 					newStart || oldStart
 				).subtract(dayishDiff(
-						// subtract old duration
-						oldEnd || t.getDefaultEventEnd(oldAllDay, oldStart),
-						oldStart
-					));
+					// subtract old duration
+					oldEnd || t.getDefaultEventEnd(oldAllDay, oldStart),
+					oldStart
+				));
 			}
 
 			undoFunc = mutateEvents(
@@ -2591,10 +2592,10 @@
 					newEnd || t.getDefaultEventEnd(newAllDay, newStart || oldStart),
 					newStart || oldStart
 				).subtract(dayishDiff(
-						// subtract old duration
-						oldEnd || t.getDefaultEventEnd(oldAllDay, oldStart),
-						oldStart
-					));
+					// subtract old duration
+					oldEnd || t.getDefaultEventEnd(oldAllDay, oldStart),
+					oldStart
+				));
 			}
 
 			undoFunc = mutateResourceEvents(
@@ -2748,7 +2749,7 @@
 
 // Given a total available height to fill, have `els` (essentially child rows) expand to accomodate.
 // By default, all elements that are shorter than the recommended height are expanded uniformly, not considering
-// any other els that are already too tall. if `shouldRedistribute` is on, it considers these tall rows and 
+// any other els that are already too tall. if `shouldRedistribute` is on, it considers these tall rows and
 // reduces the available height.
 	function distributeHeight(els, availableHeight, shouldRedistribute) {
 
@@ -3173,7 +3174,7 @@
 					mom._ambigZone = true;
 				}
 				else if (isSingleString) {
-					mom.zone(input); // if not a valid zone, will assign UTC
+					mom.utcOffset(input); // if not a valid zone, will assign UTC
 				}
 			}
 		}
@@ -3303,7 +3304,7 @@
 	};
 
 // this method implicitly marks a zone (will get called upon .utc() and .local())
-	newMomentProto.zone = function(tzo) {
+	newMomentProto.utcOffset = function(tzo) {
 
 		if (tzo != null) { // setter
 			// these assignments needs to happen before the original zone method is called.
@@ -3312,7 +3313,7 @@
 			this._ambigZone = false;
 		}
 
-		return oldMomentProto.zone.apply(this, arguments);
+		return oldMomentProto.utcOffset.apply(this, arguments);
 	};
 
 // this method implicitly marks a zone
@@ -6027,7 +6028,6 @@
 			var skinCss = this.getEventSkinCss(annotation);
 			var timeHtml = '';
 			var titleHtml;
-			var serviceTitle;
 
 			// Only display a timed events time if it is the starting segment
 			if (!annotation.allDay && seg.isStart) {
@@ -6037,11 +6037,6 @@
 			titleHtml =
 				'<span class="fc-title">' +
 				(htmlEscape(annotation.title || '') || '&nbsp;') + // we always want one line of height
-				'</span>';
-
-			serviceTitle =
-				'<span class="fc-serviceTitle">' +
-				(htmlEscape(annotation.service || '') || '&nbsp;') + // we always want one line of height
 				'</span>';
 
 			return '<a class="' + classes.join(' ') + '"' +
@@ -6056,8 +6051,8 @@
 				'>' +
 				'<div class="fc-content">' +
 				(isRTL ?
-					titleHtml + ' ' + timeHtml + ' ' + serviceTitle : // put a natural space in between
-					timeHtml + ' ' + titleHtml + ' ' + serviceTitle   //
+					titleHtml + ' ' + timeHtml : // put a natural space in between
+					timeHtml + ' ' + titleHtml   //
 				) +
 				'</div></a>';
 		}
@@ -6482,7 +6477,6 @@
 			var skinCss = this.getEventSkinCss(event);
 			var timeHtml = '';
 			var titleHtml;
-			var serviceTitle;
 
 			classes.unshift('fc-day-grid-event');
 
@@ -6496,12 +6490,6 @@
 				(htmlEscape(event.title || '') || '&nbsp;') + // we always want one line of height
 				'</span>';
 
-			serviceTitle =
-				'<span class="fc-serviceTitle">' +
-				(htmlEscape(event.service || '') || '&nbsp;') + // we always want one line of height
-				'</span>';
-
-
 			return '<a class="' + classes.join(' ') + '"' +
 				(event.url ?
 					' href="' + htmlEscape(event.url) + '"' :
@@ -6514,8 +6502,8 @@
 				'>' +
 				'<div class="fc-content">' +
 				(isRTL ?
-					titleHtml + ' ' + timeHtml + ' ' + serviceTitle :  // put a natural space in between
-					timeHtml + ' ' + titleHtml + ' ' + serviceTitle   //
+					titleHtml + ' ' + timeHtml : // put a natural space in between
+					timeHtml + ' ' + titleHtml   //
 				) +
 				'</div>' +
 				(isResizable ?
@@ -6878,8 +6866,8 @@
 
 			return $('<a class="fc-more"/>')
 				.text(
-				this.getMoreLinkText(hiddenSegs.length)
-			)
+					this.getMoreLinkText(hiddenSegs.length)
+				)
 				.on('click', function(ev) {
 					var clickOption = view.opt('eventLimitClick');
 					var date = view.cellToDate(cell);
@@ -7065,7 +7053,7 @@
 	TimeGrid.prototype = createObject(Grid.prototype); // define the super-class
 	$.extend(TimeGrid.prototype, {
 
-		slotDuration: 30, // duration of a "slot", a distinct time segment on given day, visualized by lines
+		slotDuration: null, // duration of a "slot", a distinct time segment on given day, visualized by lines
 		snapDuration: null, // granularity of time for dragging and selecting
 
 		minTime: null, // Duration object that denotes the first visible time of any given day
@@ -7139,30 +7127,42 @@
 			var slotDate; // will be on the view's first day, but we only care about its time
 			var minutes;
 			var axisHtml;
+			var cellLabels;
 
 			// Calculate the time for each slot
 			while (slotTime < this.maxTime) {
 				slotDate = view.start.clone().time(slotTime); // will be in UTC but that's good. to avoid DST issues
 				minutes = slotDate.minutes();
-				console.log("slotDate : ",slotDate);
-				console.log(minutes);
 
 				axisHtml =
 					'<td class="fc-axis fc-time ' + view.widgetContentClass + '" ' + view.axisStyleAttr() + '>' +
-					((!slotNormal || minutes === 0 || minutes === 30 ) ? // if irregular slot duration, or on the hour, then display the time
-						'<span class="hours">' + // for matchCellWidths
-						htmlEscape(calendar.formatDate(slotDate, view.opt('axisFormat')).substr(0, calendar.formatDate(slotDate, view.opt('axisFormat')).indexOf(":"))) +
-						'</span><span class="minutes">' + // for matchCellWidths
-						htmlEscape(calendar.formatDate(slotDate, view.opt('axisFormat')).substr(calendar.formatDate(slotDate, view.opt('axisFormat')).indexOf(":")).replace(":", " ")) +
-						'</span>':
+					((!slotNormal || minutes === 0/* || minutes === 30*/) ? // if irregular slot duration, or on the hour, then display the time
+						'<span>' + // for matchCellWidths
+						calendar.formatDate(slotDate, view.opt('axisFormat')) +
+						'</span>' :
+							//'<span><span class="hours">' + // for matchCellWidths
+							//	htmlEscape(calendar.formatDate(slotDate, view.opt('axisFormat')).substr(0, calendar.formatDate(slotDate, view.opt('axisFormat')).indexOf(":"))) +
+							//'</span><span class="minutes">' + // for matchCellWidths
+							//	htmlEscape(calendar.formatDate(slotDate, view.opt('axisFormat')).substr(calendar.formatDate(slotDate, view.opt('axisFormat')).indexOf(":")).replace(":", " ")) +
+							//'</span></span>':
 							''
 					) +
 					'</td>';
 
+				if (!minutes) {
+					cellLabels = "<table>";
+					for (var i = 0; i < view.colCnt; i++) {
+						cellLabels += "<td>" + calendar.formatDate(slotDate, view.opt('axisFormat')) + "</td>";
+					}
+					cellLabels += "</table>";
+				}
+
 				html +=
 					'<tr ' + (!minutes ? '' : 'class="fc-minor"') + '>' +
 					(!isRTL ? axisHtml : '') +
-					'<td class="' + view.widgetContentClass + '"/>' +
+					'<td class="' + view.widgetContentClass + '">' +
+					(!minutes ? cellLabels : '') +
+					'</td>' +
 					(isRTL ? axisHtml : '') +
 					"</tr>";
 
@@ -7660,6 +7660,7 @@
 						''
 				) +
 				'>' +
+				'<div class="fc-custom-content" style="width:inherit; height:100%">' +
 				'<div class="fc-content">' +
 				(timeText ?
 					'<div class="fc-time"' +
@@ -7676,18 +7677,13 @@
 					'</div>' :
 						''
 				) +
-				(event.service ?
-					'<div class="fc-service">' +
-					htmlEscape(event.service) +
-					'</div>' :
-						''
-				) +
 				'</div>' +
 				'<div class="fc-bg"/>' +
 				(isResizable ?
 						'<div class="fc-resizer"/>' :
 						''
 				) +
+				'</div>'+
 				'</a>';
 		},
 
@@ -7929,9 +7925,9 @@
 	function compareForwardSlotSegs(seg1, seg2) {
 		// put higher-pressure first
 		return seg2.forwardPressure - seg1.forwardPressure ||
-				// put segments that are closer to initial edge first (and favor ones with no coords yet)
+			// put segments that are closer to initial edge first (and favor ones with no coords yet)
 			(seg1.backwardCoord || 0) - (seg2.backwardCoord || 0) ||
-				// do normal sorting...
+			// do normal sorting...
 			compareSegs(seg1, seg2);
 	}
 
@@ -9331,15 +9327,15 @@
 
 		scrollTime: '06:00:00',
 
-		slotDuration: '00:15:00',
+		slotDuration: '00:60:00',
 
 		axisFormat: generateAgendaAxisFormat,
 		timeFormat: {
 			agenda: generateAgendaTimeFormat
 		},
 
-		minTime: '07:00:00',
-		maxTime: '22:00:00',
+		minTime: '00:00:00',
+		maxTime: '24:00:00',
 		slotEventOverlap: true
 	});
 
@@ -9386,7 +9382,7 @@
 		timeGrid: null, // the main time-grid subcomponent of this view
 		dayGrid: null, // the "all-day" subcomponent. if all-day is turned off, this will be null
 
-		axisWidth: 40, // the width of the time axis running down the side
+		axisWidth: null, // the width of the time axis running down the side
 
 		noScrollRowEls: null, // set of fake row elements that must compensate when scrollerEl has scrollbars
 
@@ -9558,7 +9554,7 @@
 		// Refreshes the horizontal dimensions of the view
 		updateWidth: function() {
 			// make all axis cells line up, and record the width so newly created axis cells will have it
-			//this.axisWidth = matchCellWidths(this.el.find('.fc-axis'));
+			this.axisWidth = matchCellWidths(this.el.find('.fc-axis'));
 		},
 
 
@@ -9939,7 +9935,4 @@
 		}
 
 	});
-
-	;;
-
 });
