@@ -761,15 +761,6 @@ a.fc-more:hover {
 	padding: 0 4px;
 	white-space: nowrap;
 }
-.fc .fc-axis .hours {
-	font-size: 1.8em;
-	letter-spacing: -2px;
-}
-
-.fc .fc-axis .minutes {
-	vertical-align: top;
-	font-size: 0.8em;
-}
 
 .fc-ltr .fc-axis {
 	text-align: right;
