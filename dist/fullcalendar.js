@@ -7150,11 +7150,13 @@
 					'</td>';
 
 				if (!minutes) {
-					cellLabels = "<table>";
+					cellLabels = "<div class='table'>";
+					cellLabels += "<div class='table-row'>";
 					for (var i = 0; i < view.colCnt; i++) {
-						cellLabels += "<td>" + calendar.formatDate(slotDate, view.opt('axisFormat')) + "</td>";
+						cellLabels += "<div class='table-cell'>" + calendar.formatDate(slotDate, view.opt('axisFormat')) + "</div>";
 					}
-					cellLabels += "</table>";
+					cellLabels += "	</div>";
+					cellLabels += "</div>";
 				}
 
 				html +=
