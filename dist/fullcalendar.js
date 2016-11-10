@@ -5163,7 +5163,7 @@
 			var colFormat = view.opt('columnFormat');
 
 			return '' +
-				'<th class="fc-day-header ' + view.widgetHeaderClass + ' fc-' + dayIDs[date.day()] + '">' +
+				'<th class="fc-day-header ' + view.widgetHeaderClass + ' fc-' + dayIDs[date.day()] + (moment().isSame(date, 'day') ? ' active' : '') +'">' +
 				htmlEscape(calendar.formatDate(date, colFormat)) +
 				'</th>';
 		},
@@ -7157,13 +7157,21 @@
 					}
 					cellLabels += "	</div>";
 					cellLabels += "</div>";
+				} else {
+					cellLabels = "<div class='table'>";
+					cellLabels += "<div class='table-row'>";
+					for (var i = 0; i < view.colCnt; i++) {
+						cellLabels += "<div class='table-cell'>&nbsp;</div>";
+					}
+					cellLabels += "	</div>";
+					cellLabels += "</div>";
 				}
 
 				html +=
 					'<tr ' + (!minutes ? '' : 'class="fc-minor"') + '>' +
 					(!isRTL ? axisHtml : '') +
 					'<td class="' + view.widgetContentClass + '">' +
-					(!minutes ? cellLabels : '') +
+					cellLabels +
 					'</td>' +
 					(isRTL ? axisHtml : '') +
 					"</tr>";
@@ -9882,7 +9890,7 @@
 
 			return '' +
 				'<th class="'+ classes.join(' ') +'">' +
-				((resource) ? htmlEscape(resource.name) : '') +
+				((resource) ? '<img src="' + resource.image + '" width="20"/> <div>' + htmlEscape(resource.name) + '</div>' : '') +
 				'</th>';
 		}
 
