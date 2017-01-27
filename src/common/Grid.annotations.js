@@ -1,6 +1,5 @@
-
 /* annotation-rendering and annotation-interaction methods for the abstract Grid class
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 $.extend(Grid.prototype, {
 
@@ -64,7 +63,7 @@ $.extend(Grid.prototype, {
 		return renderedAnns;
 	},
 
-		// Builds the HTML to be used for the default element for an individual segment
+	// Builds the HTML to be used for the default element for an individual segment
 	renderAnnotationHtml: function(seg, disableResizing) {
 		var view = this.view;
 		var isRTL = view.opt('isRTL');
@@ -81,25 +80,25 @@ $.extend(Grid.prototype, {
 
 		titleHtml =
 			'<span class="fc-title">' +
-				(htmlEscape(annotation.title || '') || '&nbsp;') + // we always want one line of height
+			(htmlEscape(annotation.title || '') || '&nbsp;') + // we always want one line of height
 			'</span>';
 
 		return '<a class="' + classes.join(' ') + '"' +
-				(annotation.url ?
-					' href="' + htmlEscape(annotation.url) + '"' :
+			(annotation.url ?
+				' href="' + htmlEscape(annotation.url) + '"' :
 					''
-					) +
-				(skinCss ?
-					' style="' + skinCss + '"' :
+			) +
+			(skinCss ?
+				' style="' + skinCss + '"' :
 					''
-					) +
+			) +
 			'>' +
-				'<div class="fc-content">' +
-					(isRTL ?
-						titleHtml + ' ' + timeHtml : // put a natural space in between
-						timeHtml + ' ' + titleHtml   //
-						) +
-				'</div></a>';
+			'<div class="fc-content">' +
+			(isRTL ?
+				titleHtml + ' ' + timeHtml : // put a natural space in between
+				timeHtml + ' ' + titleHtml   //
+			) +
+			'</div></a>';
 	}
 
 });

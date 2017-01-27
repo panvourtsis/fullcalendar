@@ -1,17 +1,16 @@
-
 /* A "coordinate map" converts pixel coordinates into an associated cell, which has an associated date
-------------------------------------------------------------------------------------------------------------------------
-Common interface:
+ ------------------------------------------------------------------------------------------------------------------------
+ Common interface:
 
-	CoordMap.prototype = {
-		build: function() {},
-		getCell: function(x, y) {}
-	};
+ CoordMap.prototype = {
+ build: function() {},
+ getCell: function(x, y) {}
+ };
 
-*/
+ */
 
 /* Coordinate map for a grid component
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 function GridCoordMap(grid) {
 	this.grid = grid;
@@ -103,7 +102,7 @@ GridCoordMap.prototype = {
 
 
 /* Coordinate map that is a combination of multiple other coordinate maps
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 function ComboCoordMap(coordMaps) {
 	this.coordMaps = coordMaps;

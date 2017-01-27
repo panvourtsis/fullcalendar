@@ -1,17 +1,17 @@
 
 /* A rectangular panel that is absolutely positioned over other content
-------------------------------------------------------------------------------------------------------------------------
-Options:
-	- className (string)
-	- content (HTML string or jQuery element set)
-	- parentEl
-	- top
-	- left
-	- right (the x coord of where the right edge should be. not a "CSS" right)
-	- autoHide (boolean)
-	- show (callback)
-	- hide (callback)
-*/
+ ------------------------------------------------------------------------------------------------------------------------
+ Options:
+ - className (string)
+ - content (HTML string or jQuery element set)
+ - parentEl
+ - top
+ - left
+ - right (the x coord of where the right edge should be. not a "CSS" right)
+ - autoHide (boolean)
+ - show (callback)
+ - hide (callback)
+ */
 
 function Popover(options) {
 	this.options = options || {};

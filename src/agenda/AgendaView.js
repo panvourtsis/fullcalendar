@@ -1,6 +1,6 @@
 
 /* An abstract class for all agenda-related views. Displays one more columns with time slots running vertically.
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 // Is a manager for the TimeGrid subcomponent and possibly the DayGrid subcomponent (if allDaySlot is on).
 // Responsible for managing width/height.
 
@@ -10,7 +10,7 @@ setDefaults({
 
 	scrollTime: '06:00:00',
 
-	slotDuration: '00:30:00',
+	slotDuration: '00:60:00',
 
 	axisFormat: generateAgendaAxisFormat,
 	timeFormat: {
@@ -75,7 +75,7 @@ $.extend(AgendaView.prototype, {
 
 
 	/* Rendering
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders the view into `this.el`, which has already been assigned.
@@ -130,27 +130,27 @@ $.extend(AgendaView.prototype, {
 	renderHtml: function() {
 		return '' +
 			'<table>' +
-				'<thead>' +
-					'<tr>' +
-						'<td class="' + this.widgetHeaderClass + '">' +
-							this.timeGrid.headHtml() + // render the day-of-week headers
-						'</td>' +
-					'</tr>' +
-				'</thead>' +
-				'<tbody>' +
-					'<tr>' +
-						'<td class="' + this.widgetContentClass + '">' +
-							(this.dayGrid ?
-								'<div class="fc-day-grid"/>' +
-								'<hr class="' + this.widgetHeaderClass + '"/>' :
-								''
-								) +
-							'<div class="fc-time-grid-container">' +
-								'<div class="fc-time-grid"/>' +
-							'</div>' +
-						'</td>' +
-					'</tr>' +
-				'</tbody>' +
+			'<thead>' +
+			'<tr>' +
+			'<td class="' + this.widgetHeaderClass + '">' +
+			this.timeGrid.headHtml() + // render the day-of-week headers
+			'</td>' +
+			'</tr>' +
+			'</thead>' +
+			'<tbody>' +
+			'<tr>' +
+			'<td class="' + this.widgetContentClass + '">' +
+			(this.dayGrid ?
+				'<div class="fc-day-grid"/>' +
+				'<hr class="' + this.widgetHeaderClass + '"/>' :
+					''
+			) +
+			'<div class="fc-time-grid-container">' +
+			'<div class="fc-time-grid"/>' +
+			'</div>' +
+			'</td>' +
+			'</tr>' +
+			'</tbody>' +
 			'</table>';
 	},
 
@@ -177,9 +177,9 @@ $.extend(AgendaView.prototype, {
 
 			return '' +
 				'<th class="fc-axis fc-week-number ' + this.widgetHeaderClass + '" ' + this.axisStyleAttr() + '>' +
-					'<span>' + // needed for matchCellWidths
-						htmlEscape(weekText) +
-					'</span>' +
+				'<span>' + // needed for matchCellWidths
+				htmlEscape(weekText) +
+				'</span>' +
 				'</th>';
 		}
 		else {
@@ -193,9 +193,9 @@ $.extend(AgendaView.prototype, {
 	dayIntroHtml: function() {
 		return '' +
 			'<td class="fc-axis ' + this.widgetContentClass + '" ' + this.axisStyleAttr() + '>' +
-				'<span>' + // needed for matchCellWidths
-					(this.opt('allDayHtml') || htmlEscape(this.opt('allDayText'))) +
-				'</span>' +
+			'<span>' + // needed for matchCellWidths
+			(this.opt('allDayHtml') || htmlEscape(this.opt('allDayText'))) +
+			'</span>' +
 			'</td>';
 	},
 
@@ -217,14 +217,14 @@ $.extend(AgendaView.prototype, {
 	// Generates an HTML attribute string for setting the width of the axis, if it is known
 	axisStyleAttr: function() {
 		if (this.axisWidth !== null) {
-			 return 'style="width:' + this.axisWidth + 'px"';
+			return 'style="width:' + this.axisWidth + 'px"';
 		}
 		return '';
 	},
 
 
 	/* Dimensions
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 	updateSize: function(isResize) {
 		if (isResize) {
@@ -317,7 +317,7 @@ $.extend(AgendaView.prototype, {
 
 
 	/* Events
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders events onto the view and populates the View's segment array
@@ -380,7 +380,7 @@ $.extend(AgendaView.prototype, {
 
 
 	/* Event Dragging
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of an event being dragged over the view.
@@ -405,7 +405,7 @@ $.extend(AgendaView.prototype, {
 
 
 	/* Selection
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of a selection

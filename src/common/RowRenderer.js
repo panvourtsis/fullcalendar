@@ -1,6 +1,5 @@
-
 /* A utility class for rendering <tr> rows.
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 // It leverages methods of the subclass and the View to determine custom rendering behavior for each row "type"
 // (such as highlight rows, day rows, helper rows, etc).
 

@@ -1,6 +1,5 @@
-
 /* An abstract class comprised of a "grid" of cells that each represent a specific datetime
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 function Grid(view) {
 	RowRenderer.call(this, view); // call the super-constructor
@@ -32,7 +31,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Coordinates & Cells
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Populates the given empty arrays with the y and x coordinates of the cells
@@ -60,7 +59,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Handlers
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Attach handlers to `this.el`, using bubbling to listen to all ancestors.
@@ -162,7 +161,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Event Dragging
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of a event being dragged over the given date(s).
@@ -180,7 +179,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Event Resizing
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of an event being resized.
@@ -197,7 +196,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Event Helper
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a mock event over the given date(s).
@@ -242,7 +241,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Selection
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of a selection. Will highlight by default but can be overridden by subclasses.
@@ -258,7 +257,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Highlight
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders an emphasis on the given date range. `start` is inclusive. `end` is exclusive.
@@ -289,7 +288,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Fill System (highlight, background events, business hours)
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a set of rectangles over the given segments of time.
@@ -374,18 +373,18 @@ $.extend(Grid.prototype, {
 
 
 	/* Generic rendering utilities for subclasses
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a day-of-week header row
 	headHtml: function() {
 		return '' +
 			'<div class="fc-row ' + this.view.widgetHeaderClass + '">' +
-				'<table>' +
-					'<thead>' +
-						this.rowHtml('head') + // leverages RowRenderer
-					'</thead>' +
-				'</table>' +
+			'<table>' +
+			'<thead>' +
+			this.rowHtml('head') + // leverages RowRenderer
+			'</thead>' +
+			'</table>' +
 			'</div>';
 	},
 
@@ -397,8 +396,8 @@ $.extend(Grid.prototype, {
 		var colFormat = view.opt('columnFormat');
 
 		return '' +
-			'<th class="fc-day-header ' + view.widgetHeaderClass + ' fc-' + dayIDs[date.day()] + '">' +
-				htmlEscape(calendar.formatDate(date, colFormat)) +
+			'<th class="fc-day-header ' + view.widgetHeaderClass + ' fc-' + dayIDs[date.day()] + (moment().isSame(date, 'day') ? ' active' : '') +'">' +
+			htmlEscape(calendar.formatDate(date, colFormat)) +
 			'</th>';
 	},
 

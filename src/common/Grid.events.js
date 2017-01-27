@@ -1,6 +1,5 @@
-
 /* Event-rendering and event-interaction methods for the abstract Grid class
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 $.extend(Grid.prototype, {
 
@@ -55,7 +54,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Foreground Segment Rendering
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders foreground event segments onto the grid. May return a subset of segs that were rendered.
@@ -111,7 +110,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Background Segment Rendering
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders the given background event segments onto the grid.
@@ -179,7 +178,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Handlers
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Attaches event-element-related handlers to the container element and leverage bubbling
@@ -245,7 +244,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Dragging
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Called when the user does a mousedown on an event, which might lead to dragging.
@@ -319,7 +318,7 @@ $.extend(Grid.prototype, {
 
 				if (view.name === 'resourceDay') {
 					var sameResources = $(originalResources).not(event.resources).length === 0 &&
-							$(event.resources).not(originalResources).length === 0;
+						$(event.resources).not(originalResources).length === 0;
 					hasChanged = hasChanged || !sameResources;
 				}
 
@@ -385,7 +384,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Resizing
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Called when the user does a mousedown on an event's resizer, which might lead to resizing.
@@ -460,7 +459,7 @@ $.extend(Grid.prototype, {
 
 
 	/* Rendering Utils
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Generic utility for generating the HTML classNames for an event segment's element
@@ -516,7 +515,7 @@ $.extend(Grid.prototype, {
 			statements.push('background-color:' + backgroundColor);
 		}
 		if (borderColor) {
-			statements.push('border-color:' + borderColor);
+			statements.push('border-color:' + this.colorLuminance(borderColor, -0.2));
 		}
 		if (textColor) {
 			statements.push('color:' + textColor);
@@ -524,9 +523,29 @@ $.extend(Grid.prototype, {
 		return statements.join(';');
 	},
 
+	colorLuminance: function (hex, lum) {
+
+		// validate hex string
+		hex = String(hex).replace(/[^0-9a-f]/gi, '');
+		if (hex.length < 6) {
+			hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+		}
+		lum = lum || 0;
+
+		// convert to decimal and change luminosity
+		var rgb = "#", c, i;
+		for (i = 0; i < 3; i++) {
+			c = parseInt(hex.substr(i*2,2), 16);
+			c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+			rgb += ("00"+c).substr(c.length);
+		}
+
+		return rgb;
+	},
+
 
 	/* Converting events -> ranges -> segs
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Converts an array of event objects into an array of event segment objects.
@@ -657,12 +676,12 @@ $.extend(Grid.prototype, {
 		}
 
 		if (view.name === 'resourceDay') {
-				// Filters the events according to the resource columns
-				var resources = view.resources();
+			// Filters the events according to the resource columns
+			var resources = view.resources();
 
-				segs = $.grep(segs, function(seg, i) {
-					return resources[i] && view.hasResource(eventRange.event, resources[i]);
-				});
+			segs = $.grep(segs, function(seg, i) {
+				return resources[i] && view.hasResource(eventRange.event, resources[i]);
+			});
 		}
 
 		for (i = 0; i < segs.length; i++) {
@@ -679,24 +698,19 @@ $.extend(Grid.prototype, {
 
 
 /* Utilities
-----------------------------------------------------------------------------------------------------------------------*/
-
-
+ ----------------------------------------------------------------------------------------------------------------------*/
 function isBgEvent(event) { // returns true if background OR inverse-background
 	var rendering = getEventRendering(event);
 	return rendering === 'background' || rendering === 'inverse-background';
 }
 
-
 function isInverseBgEvent(event) {
 	return getEventRendering(event) === 'inverse-background';
 }
 
-
 function getEventRendering(event) {
 	return firstDefined((event.source || {}).rendering, event.rendering);
 }
-
 
 function groupEventsById(events) {
 	var eventsById = {};
@@ -710,12 +724,10 @@ function groupEventsById(events) {
 	return eventsById;
 }
 
-
 // A cmp function for determining which non-inverted "ranges" (see above) happen earlier
 function compareNormalRanges(range1, range2) {
 	return range1.eventStartMS - range2.eventStartMS; // earlier ranges go first
 }
-
 
 // A cmp function for determining which segments should take visual priority
 // DOES NOT WORK ON INVERTED BACKGROUND EVENTS because they have no eventStartMS/eventDurationMS

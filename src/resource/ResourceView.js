@@ -20,10 +20,10 @@ $.extend(ResourceView.prototype, {
 		if(this.opt('hasResource')) {
 			return this.opt('hasResource').apply(this, arguments);
 		}
-		
+
 		return event.resources && $.grep(event.resources, function(id) {
-			return id == resource.id;
-		}).length;
+				return id == resource.id;
+			}).length;
 	},
 
 	// Called when a new selection is made. Updates internal state and triggers handlers.
@@ -50,7 +50,7 @@ $.extend(ResourceView.prototype, {
 
 		return '' +
 			'<th class="'+ classes.join(' ') +'">' +
-			((resource) ? htmlEscape(resource.name) : '') +
+			((resource) ? '<img src="' + resource.image + '" width="20"/> <div>' + htmlEscape(resource.name) + '</div>' : '') +
 			'</th>';
 	}
 

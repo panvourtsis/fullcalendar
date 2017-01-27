@@ -1,6 +1,6 @@
 
 /* An abstract class from which other views inherit from
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 // Newer methods should be written as prototype methods, not in the monster `View` function at the bottom.
 
 View.prototype = {
@@ -83,7 +83,7 @@ View.prototype = {
 
 
 	/* Dimensions
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Refreshes anything dependant upon sizing of the container element of the grid
@@ -163,7 +163,7 @@ View.prototype = {
 
 
 	/* Events
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders the events onto the view.
@@ -240,7 +240,7 @@ View.prototype = {
 
 
 	/* Event Drag Visualization
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of an event hovering over the specified date.
@@ -342,7 +342,7 @@ View.prototype = {
 
 
 	/* Selection
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Selects a date range on the view. `start` and `end` are both Moments.
@@ -406,7 +406,7 @@ View.prototype = {
 // constructor. Going forward, methods should be part of the prototype.
 function View(calendar) {
 	var t = this;
-	
+
 	// exports
 	t.calendar = calendar;
 	t.opt = opt;
@@ -415,18 +415,18 @@ function View(calendar) {
 	t.isEventResizable = isEventResizable;
 	t.eventDrop = eventDrop;
 	t.eventResize = eventResize;
-	
+
 	// imports
 	var reportEventChange = calendar.reportEventChange;
-	
+
 	// locals
 	var options = calendar.options;
 	var nextDayThreshold = moment.duration(options.nextDayThreshold);
 
 
 	t.init(); // the "constructor" that concerns the prototype methods
-	
-	
+
+
 	function opt(name) {
 		var v = options[name];
 		if ($.isPlainObject(v) && !isForcedAtomicOption(name)) {
@@ -435,20 +435,20 @@ function View(calendar) {
 		return v;
 	}
 
-	
+
 	function trigger(name, thisObj) {
 		return calendar.trigger.apply(
 			calendar,
 			[name, thisObj || t].concat(Array.prototype.slice.call(arguments, 2), [t])
 		);
 	}
-	
+
 
 
 	/* Event Editable Boolean Calculations
-	------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------*/
 
-	
+
 	function isEventDraggable(event) {
 		var source = event.source || {};
 
@@ -461,8 +461,8 @@ function View(calendar) {
 			opt('editable')
 		);
 	}
-	
-	
+
+
 	function isEventResizable(event) {
 		var source = event.source || {};
 
@@ -475,11 +475,11 @@ function View(calendar) {
 			opt('editable')
 		);
 	}
-	
-	
-	
+
+
+
 	/* Event Elements
-	------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------*/
 
 
 	// Compute the text that should be displayed on an event's element.
@@ -514,12 +514,12 @@ function View(calendar) {
 		}
 	};
 
-	
-	
-	/* Event Modification Reporting
-	---------------------------------------------------------------------------------*/
 
-	
+
+	/* Event Modification Reporting
+	 ---------------------------------------------------------------------------------*/
+
+
 	function eventDrop(el, event, newStart, ev) {
 		var mutateResult = calendar.mutateEvent(event, newStart, null);
 
@@ -657,7 +657,7 @@ function View(calendar) {
 		inc = inc || 1;
 		while (
 			isHiddenDayHash[(out.day() + (isExclusive ? inc : 0) + 7) % 7]
-		) {
+			) {
 			out.add(inc, 'days');
 		}
 		return out;
@@ -705,8 +705,8 @@ function View(calendar) {
 		cellOffset += dayToCellMap[day0]; // normlize cellOffset to beginning-of-week
 		return Math.floor(cellOffset / cellsPerWeek) * 7 + // # of days from full weeks
 			cellToDayMap[ // # of days from partial last week
-				(cellOffset % cellsPerWeek + cellsPerWeek) % cellsPerWeek // crazy math to handle negative cellOffsets
-			] -
+			(cellOffset % cellsPerWeek + cellsPerWeek) % cellsPerWeek // crazy math to handle negative cellOffsets
+				] -
 			day0; // adjustment for beginning-of-week normalization
 	}
 
@@ -739,8 +739,8 @@ function View(calendar) {
 		dayOffset += day0; // normalize dayOffset to beginning-of-week
 		return Math.floor(dayOffset / 7) * cellsPerWeek + // # of cells from full weeks
 			dayToCellMap[ // # of cells from partial last week
-				(dayOffset % 7 + 7) % 7 // crazy math to handle negative dayOffsets
-			] -
+			(dayOffset % 7 + 7) % 7 // crazy math to handle negative dayOffsets
+				] -
 			dayToCellMap[day0]; // adjustment for beginning-of-week normalization
 	}
 
@@ -813,7 +813,7 @@ function View(calendar) {
 				// range's first cell is hidden (we don't want isStart to be true).
 				var isStart = cellOffsetToDayOffset(segmentCellOffsetFirst) == rangeDayOffsetStart;
 				var isEnd = cellOffsetToDayOffset(segmentCellOffsetLast) + 1 == rangeDayOffsetEnd;
-				                                                   // +1 for comparing exclusively
+				// +1 for comparing exclusively
 
 				segments.push({
 					row: row,
@@ -869,7 +869,7 @@ function View(calendar) {
 
 
 /* Utils
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 // Require all HTML5 data-* attributes used by FullCalendar to have this prefix.
 // A value of '' will query attributes like data-event. A value of 'fc' will query attributes like data-fc-event.

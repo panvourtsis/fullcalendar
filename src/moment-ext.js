@@ -1,4 +1,3 @@
-
 var ambigDateOfMonthRegex = /^\s*\d{4}-\d\d$/;
 var ambigTimeOrZoneRegex =
 	/^\s*\d{4}-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?)?$/;
@@ -98,7 +97,7 @@ function makeMoment(args, parseAsUTC, parseZone) {
 				mom._ambigZone = true;
 			}
 			else if (isSingleString) {
-				mom.zone(input); // if not a valid zone, will assign UTC
+				mom.utcOffset(input); // if not a valid zone, will assign UTC
 			}
 		}
 	}
@@ -228,7 +227,7 @@ newMomentProto.hasZone = function() {
 };
 
 // this method implicitly marks a zone (will get called upon .utc() and .local())
-newMomentProto.zone = function(tzo) {
+newMomentProto.utcOffset = function(tzo) {
 
 	if (tzo != null) { // setter
 		// these assignments needs to happen before the original zone method is called.
@@ -237,7 +236,7 @@ newMomentProto.zone = function(tzo) {
 		this._ambigZone = false;
 	}
 
-	return oldMomentProto.zone.apply(this, arguments);
+	return oldMomentProto.utcOffset.apply(this, arguments);
 };
 
 // this method implicitly marks a zone

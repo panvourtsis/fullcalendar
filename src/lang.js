@@ -1,4 +1,3 @@
-
 //var langOptionHash = {}; // initialized in defaults.js
 fc.langs = langOptionHash; // expose
 
@@ -20,8 +19,8 @@ fc.datepickerLang = function(langCode, datepickerLangCode, options) {
 		weekNumberTitle: options.weekHeader,
 		titleFormat: {
 			month: options.showMonthAfterYear ?
-				'YYYY[' + options.yearSuffix + '] MMMM' :
-				'MMMM YYYY[' + options.yearSuffix + ']'
+			'YYYY[' + options.yearSuffix + '] MMMM' :
+			'MMMM YYYY[' + options.yearSuffix + ']'
 		},
 		defaultButtonText: {
 			// the translations sometimes wrongly contain HTML entities

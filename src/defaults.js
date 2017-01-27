@@ -21,9 +21,9 @@ var defaults = {
 
 	weekNumberTitle: 'W',
 	weekNumberCalculation: 'local',
-	
+
 	//editable: false,
-	
+
 	// event ajax
 	lazyFetching: true,
 	startParam: 'start',
@@ -33,7 +33,7 @@ var defaults = {
 	timezone: false,
 
 	//allDayDefault: undefined,
-	
+
 	// time formats
 	titleFormat: {
 		month: 'MMMM YYYY', // like "September 1986". each language will override this
@@ -55,7 +55,7 @@ var defaults = {
 		basicWeek: false,
 		'default': true
 	},
-	
+
 	// locale
 	isRTL: false,
 	defaultButtonText: {
@@ -75,7 +75,7 @@ var defaults = {
 		prevYear: 'left-double-arrow',
 		nextYear: 'right-double-arrow'
 	},
-	
+
 	// jquery-ui theming
 	theme: false,
 	themeButtonIcons: {
@@ -88,10 +88,10 @@ var defaults = {
 	dragOpacity: .75,
 	dragRevertDuration: 500,
 	dragScroll: true,
-	
+
 	//selectable: false,
 	unselectAuto: true,
-	
+
 	dropAccept: '*',
 
 	annotations: [],
@@ -100,10 +100,10 @@ var defaults = {
 	eventLimitText: 'more',
 	eventLimitClick: 'popover',
 	dayPopoverFormat: 'LL',
-	
+
 	handleWindowResize: true,
 	windowResizeDelay: 200 // milliseconds before a rerender happens
-	
+
 };
 
 

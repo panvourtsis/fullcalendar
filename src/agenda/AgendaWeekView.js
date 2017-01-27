@@ -1,6 +1,6 @@
 
 /* A week view with an all-day cell area at the top, and a time grid below
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 // TODO: a WeekView mixin for calculating dates and titles
 
 fcViews.agendaWeek = AgendaWeekView; // register the view

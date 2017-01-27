@@ -1,6 +1,5 @@
-
 /* Methods relate to limiting the number events for a given day on a DayGrid
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 // NOTE: all the segs being passed around in here are foreground segs
 
 $.extend(DayGrid.prototype, {
@@ -265,16 +264,16 @@ $.extend(DayGrid.prototype, {
 		var title = date.format(view.opt('dayPopoverFormat'));
 		var content = $(
 			'<div class="fc-header ' + view.widgetHeaderClass + '">' +
-				'<span class="fc-close ' +
-					(isTheme ? 'ui-icon ui-icon-closethick' : 'fc-icon fc-icon-x') +
-				'"></span>' +
-				'<span class="fc-title">' +
-					htmlEscape(title) +
-				'</span>' +
-				'<div class="fc-clear"/>' +
+			'<span class="fc-close ' +
+			(isTheme ? 'ui-icon ui-icon-closethick' : 'fc-icon fc-icon-x') +
+			'"></span>' +
+			'<span class="fc-title">' +
+			htmlEscape(title) +
+			'</span>' +
+			'<div class="fc-clear"/>' +
 			'</div>' +
 			'<div class="fc-body ' + view.widgetContentClass + '">' +
-				'<div class="fc-event-container"></div>' +
+			'<div class="fc-event-container"></div>' +
 			'</div>'
 		);
 		var segContainer = content.find('.fc-event-container');

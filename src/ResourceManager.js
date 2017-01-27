@@ -143,7 +143,7 @@ function ResourceManager(options) {
   }
 
   /* Event Modification Math
-  -----------------------------------------------------------------------------------------*/
+   -----------------------------------------------------------------------------------------*/
 
 
   // Modify the date(s) of an event and make this change propagate to all other events with
@@ -207,23 +207,23 @@ function ResourceManager(options) {
     }
     else if (newEnd) {
       durationDelta = dayishDiff(
-        // new duration
-        newEnd || t.getDefaultEventEnd(newAllDay, newStart || oldStart),
-        newStart || oldStart
+          // new duration
+          newEnd || t.getDefaultEventEnd(newAllDay, newStart || oldStart),
+          newStart || oldStart
       ).subtract(dayishDiff(
-        // subtract old duration
-        oldEnd || t.getDefaultEventEnd(oldAllDay, oldStart),
-        oldStart
+          // subtract old duration
+          oldEnd || t.getDefaultEventEnd(oldAllDay, oldStart),
+          oldStart
       ));
     }
 
     undoFunc = mutateResourceEvents(
-      t.clientEvents(event._id), // get events with this ID
-      clearEnd,
-      newAllDay,
-      dateDelta,
-      durationDelta,
-      newResources
+        t.clientEvents(event._id), // get events with this ID
+        clearEnd,
+        newAllDay,
+        dateDelta,
+        durationDelta,
+        newResources
     );
 
     return {

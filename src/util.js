@@ -1,6 +1,5 @@
-
 /* FullCalendar-specific DOM Utilities
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 
 // Given the scrollbar widths of some other container, create borders/margins on rowEls in order to match the left
@@ -46,7 +45,7 @@ function enableCursor() {
 
 // Given a total available height to fill, have `els` (essentially child rows) expand to accomodate.
 // By default, all elements that are shorter than the recommended height are expanded uniformly, not considering
-// any other els that are already too tall. if `shouldRedistribute` is on, it considers these tall rows and 
+// any other els that are already too tall. if `shouldRedistribute` is on, it considers these tall rows and
 // reduces the available height.
 function distributeHeight(els, availableHeight, shouldRedistribute) {
 
@@ -150,7 +149,7 @@ function unsetScroller(containerEl) {
 
 
 /* General DOM Utilities
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 
 // borrowed from https://github.com/jquery/jquery-ui/blob/1.11.0/ui/core.js#L51
@@ -191,7 +190,7 @@ function isPrimaryMouseButton(ev) {
 
 
 /* FullCalendar-specific Misc Utilities
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 
 // Creates a basic segment with the intersection of the two ranges. Returns undefined if no intersection.
@@ -248,7 +247,7 @@ function smartProperty(obj, name) { // get a camel-cased/namespaced property of 
 
 
 /* Date Utilities
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 var dayIDs = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ];
 
@@ -275,7 +274,7 @@ function isTimeString(str) {
 
 
 /* General Utilities
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 fc.applyAll = applyAll; // export
 

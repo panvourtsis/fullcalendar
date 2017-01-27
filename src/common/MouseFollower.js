@@ -1,6 +1,5 @@
-
 /* Creates a clone of an element and lets it track the mouse as it moves
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 function MouseFollower(sourceEl, options) {
 	this.options = options = options || {};

@@ -1,6 +1,5 @@
-
 /* A component that renders a grid of whole-days that runs horizontally. There can be multiple rows, one per week.
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 function DayGrid(view) {
 	Grid.call(this, view); // call the super-constructor
@@ -61,21 +60,21 @@ $.extend(DayGrid.prototype, {
 
 		return '' +
 			'<div class="' + classes.join(' ') + '">' +
-				'<div class="fc-bg">' +
-					'<table>' +
-						this.rowHtml('day', row) + // leverages RowRenderer. calls dayCellHtml()
-					'</table>' +
-				'</div>' +
-				'<div class="fc-content-skeleton">' +
-					'<table>' +
-						(this.numbersVisible ?
-							'<thead>' +
-								this.rowHtml('number', row) + // leverages RowRenderer. View will define render method
-							'</thead>' :
-							''
-							) +
-					'</table>' +
-				'</div>' +
+			'<div class="fc-bg">' +
+			'<table>' +
+			this.rowHtml('day', row) + // leverages RowRenderer. calls dayCellHtml()
+			'</table>' +
+			'</div>' +
+			'<div class="fc-content-skeleton">' +
+			'<table>' +
+			(this.numbersVisible ?
+				'<thead>' +
+				this.rowHtml('number', row) + // leverages RowRenderer. View will define render method
+				'</thead>' :
+					''
+			) +
+			'</table>' +
+			'</div>' +
 			'</div>';
 	},
 
@@ -89,7 +88,7 @@ $.extend(DayGrid.prototype, {
 
 
 	/* Coordinates & Cells
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Populates the empty `rows` and `cols` arrays with coordinates of the cells. For CoordGrid.
@@ -140,7 +139,7 @@ $.extend(DayGrid.prototype, {
 
 
 	/* Event Drag Visualization
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of an event hovering over the given date(s).
@@ -179,7 +178,7 @@ $.extend(DayGrid.prototype, {
 
 
 	/* Event Resize Visualization
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of an event being resized
@@ -197,7 +196,7 @@ $.extend(DayGrid.prototype, {
 
 
 	/* Event Helper
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a mock "helper" event. `sourceSeg` is the associated internal segment object. It can be null.
@@ -225,7 +224,7 @@ $.extend(DayGrid.prototype, {
 
 			skeletonEl.css('top', skeletonTop)
 				.find('table')
-					.append(rowStructs[row].tbodyEl);
+				.append(rowStructs[row].tbodyEl);
 
 			rowEl.append(skeletonEl);
 			helperNodes.push(skeletonEl[0]);
@@ -245,7 +244,7 @@ $.extend(DayGrid.prototype, {
 
 
 	/* Fill System (highlight, background events, business hours)
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	fillSegTag: 'td', // override the default tag name
@@ -283,7 +282,7 @@ $.extend(DayGrid.prototype, {
 
 		skeletonEl = $(
 			'<div class="fc-' + type.toLowerCase() + '-skeleton">' +
-				'<table><tr/></table>' +
+			'<table><tr/></table>' +
 			'</div>'
 		);
 		trEl = skeletonEl.find('tr');

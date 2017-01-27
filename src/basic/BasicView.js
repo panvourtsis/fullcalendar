@@ -1,6 +1,5 @@
-
 /* An abstract class for the "basic" views, as well as month view. Renders one or more rows of day cells.
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 // It is a manager for a DayGrid subcomponent, which does most of the heavy lifting.
 // It is responsible for managing width/height.
 
@@ -62,22 +61,22 @@ $.extend(BasicView.prototype, {
 	renderHtml: function() {
 		return '' +
 			'<table>' +
-				'<thead>' +
-					'<tr>' +
-						'<td class="' + this.widgetHeaderClass + '">' +
-							this.dayGrid.headHtml() + // render the day-of-week headers
-						'</td>' +
-					'</tr>' +
-				'</thead>' +
-				'<tbody>' +
-					'<tr>' +
-						'<td class="' + this.widgetContentClass + '">' +
-							'<div class="fc-day-grid-container">' +
-								'<div class="fc-day-grid"/>' +
-							'</div>' +
-						'</td>' +
-					'</tr>' +
-				'</tbody>' +
+			'<thead>' +
+			'<tr>' +
+			'<td class="' + this.widgetHeaderClass + '">' +
+			this.dayGrid.headHtml() + // render the day-of-week headers
+			'</td>' +
+			'</tr>' +
+			'</thead>' +
+			'<tbody>' +
+			'<tr>' +
+			'<td class="' + this.widgetContentClass + '">' +
+			'<div class="fc-day-grid-container">' +
+			'<div class="fc-day-grid"/>' +
+			'</div>' +
+			'</td>' +
+			'</tr>' +
+			'</tbody>' +
 			'</table>';
 	},
 
@@ -88,9 +87,9 @@ $.extend(BasicView.prototype, {
 		if (this.weekNumbersVisible) {
 			return '' +
 				'<th class="fc-week-number ' + this.widgetHeaderClass + '" ' + this.weekNumberStyleAttr() + '>' +
-					'<span>' + // needed for matchCellWidths
-						htmlEscape(this.opt('weekNumberTitle')) +
-					'</span>' +
+				'<span>' + // needed for matchCellWidths
+				htmlEscape(this.opt('weekNumberTitle')) +
+				'</span>' +
 				'</th>';
 		}
 	},
@@ -102,9 +101,9 @@ $.extend(BasicView.prototype, {
 		if (this.weekNumbersVisible) {
 			return '' +
 				'<td class="fc-week-number" ' + this.weekNumberStyleAttr() + '>' +
-					'<span>' + // needed for matchCellWidths
-						this.calendar.calculateWeekNumber(this.cellToDate(row, 0)) +
-					'</span>' +
+				'<span>' + // needed for matchCellWidths
+				this.calendar.calculateWeekNumber(this.cellToDate(row, 0)) +
+				'</span>' +
 				'</td>';
 		}
 	},
@@ -143,7 +142,7 @@ $.extend(BasicView.prototype, {
 
 		return '' +
 			'<td class="' + classes.join(' ') + '" data-date="' + date.format() + '">' +
-				date.date() +
+			date.date() +
 			'</td>';
 	},
 
@@ -165,7 +164,7 @@ $.extend(BasicView.prototype, {
 
 
 	/* Dimensions
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Refreshes the horizontal dimensions of the view
@@ -229,7 +228,7 @@ $.extend(BasicView.prototype, {
 
 
 	/* Events
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders the given events onto the view and populates the segments array
@@ -262,7 +261,7 @@ $.extend(BasicView.prototype, {
 
 
 	/* Event Dragging
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of an event being dragged over the view.
@@ -279,7 +278,7 @@ $.extend(BasicView.prototype, {
 
 
 	/* Selection
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of a selection

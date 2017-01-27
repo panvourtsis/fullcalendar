@@ -95,7 +95,7 @@
 --------------------------------------------------------------------------------------------------*/
 
 .fc-slats td {
-	height: 1.5em;
+	height: 2.5em;
 	border-bottom: 0; /* each cell is responsible for its top border */
 }
 
@@ -185,6 +185,9 @@ be a descendant of the grid when it is being dragged.
 .fc-time-grid-event > .fc-content { /* contains the time and title, but no bg and resizer */
 	position: relative;
 	z-index: 2; /* above the bg */
+	display: inline-block;
+	overflow: hidden;
+	max-width: 80%;
 }
 
 .fc-time-grid-event .fc-time,

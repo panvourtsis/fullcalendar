@@ -1,6 +1,6 @@
 
 /* Tracks mouse movements over a CoordMap and raises events about which cell the mouse is over.
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 // TODO: very useful to have a handler that gets called upon cellOut OR when dragging stops (for cleanup)
 
 function DragListener(coordMap, options) {
@@ -258,7 +258,7 @@ DragListener.prototype = {
 
 
 	/* Scrolling
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Computes and stores the bounding rectangle of scrollEl

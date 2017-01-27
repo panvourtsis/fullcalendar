@@ -1,6 +1,6 @@
 
 /* A week view with simple day cells running horizontally
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 // TODO: a WeekView mixin for calculating dates and titles
 
 fcViews.basicWeek = BasicWeekView; // register this view
@@ -38,5 +38,5 @@ $.extend(BasicWeekView.prototype, {
 
 		BasicView.prototype.render.call(this, 1, this.getCellsPerWeek(), false); // call the super-method
 	}
-	
+
 });

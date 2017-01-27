@@ -1,6 +1,5 @@
-
 /* A component that renders one or more columns of vertical time slots
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 function TimeGrid(view) {
 	Grid.call(this, view); // call the super-constructor
@@ -54,14 +53,14 @@ $.extend(TimeGrid.prototype, {
 	renderHtml: function() {
 		return '' +
 			'<div class="fc-bg">' +
-				'<table>' +
-					this.rowHtml('slotBg') + // leverages RowRenderer, which will call slotBgCellHtml
-				'</table>' +
+			'<table>' +
+			this.rowHtml('slotBg') + // leverages RowRenderer, which will call slotBgCellHtml
+			'</table>' +
 			'</div>' +
 			'<div class="fc-slats">' +
-				'<table>' +
-					this.slatRowHtml() +
-				'</table>' +
+			'<table>' +
+			this.slatRowHtml() +
+			'</table>' +
 			'</div>';
 	},
 
@@ -84,6 +83,7 @@ $.extend(TimeGrid.prototype, {
 		var slotDate; // will be on the view's first day, but we only care about its time
 		var minutes;
 		var axisHtml;
+		var cellLabels;
 
 		// Calculate the time for each slot
 		while (slotTime < this.maxTime) {
@@ -92,19 +92,44 @@ $.extend(TimeGrid.prototype, {
 
 			axisHtml =
 				'<td class="fc-axis fc-time ' + view.widgetContentClass + '" ' + view.axisStyleAttr() + '>' +
-					((!slotNormal || !minutes) ? // if irregular slot duration, or on the hour, then display the time
-						'<span>' + // for matchCellWidths
-							htmlEscape(calendar.formatDate(slotDate, view.opt('axisFormat'))) +
-						'</span>' :
+				((!slotNormal || minutes === 0/* || minutes === 30*/) ? // if irregular slot duration, or on the hour, then display the time
+					'<span>' + // for matchCellWidths
+					calendar.formatDate(slotDate, view.opt('axisFormat')) +
+					'</span>' :
+						//'<span><span class="hours">' + // for matchCellWidths
+						//	htmlEscape(calendar.formatDate(slotDate, view.opt('axisFormat')).substr(0, calendar.formatDate(slotDate, view.opt('axisFormat')).indexOf(":"))) +
+						//'</span><span class="minutes">' + // for matchCellWidths
+						//	htmlEscape(calendar.formatDate(slotDate, view.opt('axisFormat')).substr(calendar.formatDate(slotDate, view.opt('axisFormat')).indexOf(":")).replace(":", " ")) +
+						//'</span></span>':
 						''
-						) +
+				) +
 				'</td>';
+
+			if (!minutes) {
+				cellLabels = "<div class='table'>";
+				cellLabels += "<div class='table-row'>";
+				for (var i = 0; i < view.colCnt; i++) {
+					cellLabels += "<div class='table-cell'>" + calendar.formatDate(slotDate, view.opt('axisFormat')) + "</div>";
+				}
+				cellLabels += "	</div>";
+				cellLabels += "</div>";
+			} else {
+				cellLabels = "<div class='table'>";
+				cellLabels += "<div class='table-row'>";
+				for (var i = 0; i < view.colCnt; i++) {
+					cellLabels += "<div class='table-cell'>&nbsp;</div>";
+				}
+				cellLabels += "	</div>";
+				cellLabels += "</div>";
+			}
 
 			html +=
 				'<tr ' + (!minutes ? '' : 'class="fc-minor"') + '>' +
-					(!isRTL ? axisHtml : '') +
-					'<td class="' + view.widgetContentClass + '"/>' +
-					(isRTL ? axisHtml : '') +
+				(!isRTL ? axisHtml : '') +
+				'<td class="' + view.widgetContentClass + '">' +
+				cellLabels +
+				'</td>' +
+				(isRTL ? axisHtml : '') +
 				"</tr>";
 
 			slotTime.add(this.slotDuration);
@@ -161,7 +186,7 @@ $.extend(TimeGrid.prototype, {
 
 
 	/* Coordinates
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Called when there is a window resize/zoom and we need to recalculate coordinates for the grid
@@ -278,7 +303,7 @@ $.extend(TimeGrid.prototype, {
 
 
 	/* Event Drag Visualization
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of an event being dragged over the specified date(s).
@@ -315,7 +340,7 @@ $.extend(TimeGrid.prototype, {
 
 
 	/* Event Resize Visualization
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of an event being resized
@@ -331,7 +356,7 @@ $.extend(TimeGrid.prototype, {
 
 
 	/* Event Helper
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a mock "helper" event. `sourceSeg` is the original segment object and might be null (an external drag)
@@ -360,7 +385,7 @@ $.extend(TimeGrid.prototype, {
 
 		this.helperEl = $('<div class="fc-helper-skeleton"/>')
 			.append(tableEl)
-				.appendTo(this.el);
+			.appendTo(this.el);
 	},
 
 
@@ -374,7 +399,7 @@ $.extend(TimeGrid.prototype, {
 
 
 	/* Selection
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a visual indication of a selection. Overrides the default, which was to simply render a highlight.
@@ -396,7 +421,7 @@ $.extend(TimeGrid.prototype, {
 
 
 	/* Fill System (highlight, background events, business hours)
-	------------------------------------------------------------------------------------------------------------------*/
+	 ------------------------------------------------------------------------------------------------------------------*/
 
 
 	// Renders a set of rectangles over the given time segments.
@@ -420,7 +445,7 @@ $.extend(TimeGrid.prototype, {
 			className = className || type.toLowerCase();
 			skeletonEl = $(
 				'<div class="fc-' + className + '-skeleton">' +
-					'<table><tr/></table>' +
+				'<table><tr/></table>' +
 				'</div>'
 			);
 			trEl = skeletonEl.find('tr');

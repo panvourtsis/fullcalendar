@@ -1,6 +1,5 @@
-
 /* Event-rendering methods for the DayGrid class
-----------------------------------------------------------------------------------------------------------------------*/
+ ----------------------------------------------------------------------------------------------------------------------*/
 
 $.extend(DayGrid.prototype, {
 
@@ -115,29 +114,29 @@ $.extend(DayGrid.prototype, {
 
 		titleHtml =
 			'<span class="fc-title">' +
-				(htmlEscape(event.title || '') || '&nbsp;') + // we always want one line of height
+			(htmlEscape(event.title || '') || '&nbsp;') + // we always want one line of height
 			'</span>';
-		
+
 		return '<a class="' + classes.join(' ') + '"' +
-				(event.url ?
-					' href="' + htmlEscape(event.url) + '"' :
+			(event.url ?
+				' href="' + htmlEscape(event.url) + '"' :
 					''
-					) +
-				(skinCss ?
-					' style="' + skinCss + '"' :
+			) +
+			(skinCss ?
+				' style="' + skinCss + '"' :
 					''
-					) +
+			) +
 			'>' +
-				'<div class="fc-content">' +
-					(isRTL ?
-						titleHtml + ' ' + timeHtml : // put a natural space in between
-						timeHtml + ' ' + titleHtml   //
-						) +
-				'</div>' +
-				(isResizable ?
+			'<div class="fc-content">' +
+			(isRTL ?
+				titleHtml + ' ' + timeHtml : // put a natural space in between
+				timeHtml + ' ' + titleHtml   //
+			) +
+			'</div>' +
+			(isResizable ?
 					'<div class="fc-resizer"/>' :
 					''
-					) +
+			) +
 			'</a>';
 	},
 
@@ -241,7 +240,7 @@ $.extend(DayGrid.prototype, {
 		// Give preference to elements with certain criteria, so they have
 		// a chance to be closer to the top.
 		segs.sort(compareSegs);
-		
+
 		for (i = 0; i < segs.length; i++) {
 			seg = segs[i];
 
