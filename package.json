@@ -24,6 +24,6 @@
     "karma-phantomjs-launcher": "^0.1.4"
   },
   "scripts": {
-    "install": "bower install"
+    "postinstall": "bower install && grunt dist"
   }
 }
