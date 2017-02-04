@@ -125,20 +125,15 @@ module.exports = function(grunt) {
 
 		var js = grunt.file.read(path);
 
-		js = js.replace( // remove the UMD wrap
-			/\(\s*function[\S\s]*?function\s*\(\s*moment\s*\)\s*\{([\S\s]*)\}\)\);?/,
+		js = js.replace(
+			/\(\s*function[\S\s]*?function\s*\(\s*moment\s*\)\s*\{([\S\s]*)\}\)\)\)?;?/,
 			function(m0, body) {
-				body = body.replace(/^    /mg, ''); // remove 1 level of indentation
 				return body;
 			}
 		);
 
-		// replace the `return` statement so execution continues
-		// compatible with moment-pre-2.8
-		js = js.replace(
-			/^(\s*)return moment\.(defineLocale|lang)\(/m,
-			'$1(moment.defineLocale || moment.lang).call(moment, '
-		);
+		// the JS will return a value. wrap in a closure to avoid haulting execution
+		js = '(function() {\n' + js + '})();\n';
 
 		return js;
 	}
