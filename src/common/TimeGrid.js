@@ -109,7 +109,7 @@ $.extend(TimeGrid.prototype, {
 			cellLabels += "<div class='table-row'>";
 			for (var i = 0; i < view.colCnt; i++) {
 				cellLabels += "<div class='table-cell'>" +
-					(minutes ? "&nsbp" : calendar.formatDate(slotDate, view.opt('axisFormat'))) +
+					(minutes ? "&nbsp;" : calendar.formatDate(slotDate, view.opt('axisFormat'))) +
 					"</div>";
 			}
 			cellLabels += "	</div>";
