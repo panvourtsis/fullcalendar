@@ -1,7 +1,7 @@
 build
 .idea
 demos
-lang
+./lang
 lib
 src
 tests
