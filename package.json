@@ -8,7 +8,6 @@
   "devDependencies": {
     "bower": "*",
     "grunt": "*",
-    "grunt-cli": "*",
     "grunt-bump": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-compress": "*",
