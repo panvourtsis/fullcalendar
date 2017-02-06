@@ -409,7 +409,8 @@ setUTCValues = allowValueOptimization ? function(mom, a) {
 // Assumes the given moment is already in local mode.
 setLocalValues = allowValueOptimization ? function(mom, a) {
 	// simlate what moment's accessors do
-	mom._d.setTime(+new Date( // FYI, there is now way to apply an array of args to a constructor
+	// FYI, there is now way to apply an array of args to a constructor
+	mom._d.setTime(+new Date(
 		a[0] || 0,
 		a[1] || 0,
 		a[2] || 0,

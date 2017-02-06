@@ -40,7 +40,8 @@ $.extend(MonthView.prototype, {
 		this.end.add((7 - this.end.weekday()) % 7, 'days'); // move to end of week if not already
 		this.end = this.skipHiddenDays(this.end, -1, true); // move in from the last invisible days of the week
 
-		rowCnt = Math.ceil( // need to ceil in case there are hidden days
+		// need to ceil in case there are hidden days
+		rowCnt = Math.ceil(
 			this.end.diff(this.start, 'weeks', true) // returnfloat=true
 		);
 		if (this.isFixedWeeks()) {

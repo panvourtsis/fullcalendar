@@ -523,7 +523,7 @@ $.extend(Grid.prototype, {
 		return statements.join(';');
 	},
 
-	colorLuminance: function (hex, lum) {
+	colorLuminance: function(hex, lum) {
 
 		// validate hex string
 		hex = String(hex).replace(/[^0-9a-f]/gi, '');

@@ -1,0 +1,11 @@
+build
+.idea
+demos
+lang/
+lib
+src
+tests
+Gruntfile.js
+bower.json
+lumbar.json
+fullcalendar.jquery.json

@@ -105,23 +105,15 @@ $.extend(TimeGrid.prototype, {
 				) +
 				'</td>';
 
-			if (!minutes) {
-				cellLabels = "<div class='table'>";
-				cellLabels += "<div class='table-row'>";
-				for (var i = 0; i < view.colCnt; i++) {
-					cellLabels += "<div class='table-cell'>" + calendar.formatDate(slotDate, view.opt('axisFormat')) + "</div>";
-				}
-				cellLabels += "	</div>";
-				cellLabels += "</div>";
-			} else {
-				cellLabels = "<div class='table'>";
-				cellLabels += "<div class='table-row'>";
-				for (var i = 0; i < view.colCnt; i++) {
-					cellLabels += "<div class='table-cell'>&nbsp;</div>";
-				}
-				cellLabels += "	</div>";
-				cellLabels += "</div>";
+			cellLabels = "<div class='table'>";
+			cellLabels += "<div class='table-row'>";
+			for (var i = 0; i < view.colCnt; i++) {
+				cellLabels += "<div class='table-cell'>" +
+					(minutes ? "&nbsp;" : calendar.formatDate(slotDate, view.opt('axisFormat'))) +
+					"</div>";
 			}
+			cellLabels += "	</div>";
+			cellLabels += "</div>";
 
 			html +=
 				'<tr ' + (!minutes ? '' : 'class="fc-minor"') + '>' +
@@ -235,7 +227,8 @@ $.extend(TimeGrid.prototype, {
 		var view = this.view;
 		var calendar = view.calendar;
 
-		return calendar.rezoneDate( // since we are adding a time, it needs to be in the calendar's timezone
+		// since we are adding a time, it needs to be in the calendar's timezone
+		return calendar.rezoneDate(
 			view.cellToDate(0, cell.col) // View's coord system only accounts for start-of-day for column
 				.time(this.minTime + this.snapDuration * cell.row)
 		);
